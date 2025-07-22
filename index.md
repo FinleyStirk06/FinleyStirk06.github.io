@@ -3,7 +3,7 @@ layout: default
 title: Home
 ---
 
-Second week into my project and I think that things are coming along nicely. I started off the week by taking a trip with Michael to the Cambridge Maker space where he showed me around the various pieces of equipment and explained some useful bits of information on 3D printing. He also helped me do my first 3D print of a model I had made in the week prior. It was a little rough around the edges but it was a good start and it was nice to having something I could physically hold and interact with.
+Second week into my project and I think that things are coming along nicely. I started off the week by taking a trip with Michael to the Cambridge Makespace where he showed me around the various pieces of equipment and explained some useful bits of information on 3D printing. He also helped me do my first 3D print of a model I had made in the week prior. It was a little rough around the edges but it was a good start and it was nice to having something I could physically hold and interact with.
 ![first 3D print](images/first_print.png)
 
 My goal for this week was to have my code capable of taking any arbitrarily sized and shaped area of the globe and turning that into a 3D print file. To start, I had to move beyond my one file system and start stitching together many different files together in order to capture larger regions than what I was capable of creating before. To help with this I started using the FABDEM data which changed the precision of the data from 90m to 30m which made a noticeable improvement. The other advantange of this data is that it gave me access to elevation information anywhere* on the planet. For example this is a combination of 3 tiles which form part of the Himalayas.
