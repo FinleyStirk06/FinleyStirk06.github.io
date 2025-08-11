@@ -1,16 +1,22 @@
 ---
 layout: default
-title: 21/07/25
+title: 03/08/25
 ---
 
-I started off this week with my first print on the department 3D printers. Michael and I wanted to see how the files from the previous week would look when physically printed, so we tested it on a highly scaled down version of Mount Everest. This is what the result looked like after about 40 minutes of printing followed by a quick cleanup of the various wispy tendrils. I am overall very happy with how it looks; however, I think it will look even better and more detailed when we start doing larger prints in the future.
-![Mount Everest Print](images/21_07_25/printed_everest.png)
+These last two weeks I've finally managed to get some code uploaded on PyPI and available for anyone to download and try out. If you do want to try it out, you can find out more information on the [github page](https://github.com/quantifyearth/topogmesh). If you run into any problems with the code feel free to add an issue to the github page and I will try to address it as soon as I possibly can. As this is just the first release I've tried to make it reasonably stable and only include the core functionalities of generating terrain for either entire .tif files or for a particular area specified by a .geojson file. In the future I plan on incorporating my more recent code so keep an ear out if you are interested in this project!
 
-This demonstrated that at a scale roughly the size of a mountain, the code performed well. The problem, however, was that on smaller scales you could barely see any detail at all and when attempting to generate the terrain for an entire country the code would simply crash or if I was lucky, I would be sat waiting for hours (unless it were somewhere tiny like Liechtenstein!). 
-![Liechtenstein Mesh](images/21_07_25/liechtenstein.png)
+After a week of getting the code into a workable state for publishing, I was finally ready to go back to focusing on high resolution models of cities. To begin with I wanted a way to filter out some of the trees from the dataset as in their current form, they appear as noise and made it hard to distinguish between buildings and roads.
 
-The problem was that even after hours of waiting, the output would still be rather lacklustre in terms of detail. This is because, if I ever wanted to actually print the file, I would have to compress the number of vertices to the fraction of the amount it was created in. The simple solution to this was to have a different dataset which had been pre-processed to decrease its size to the point it was feasible for me to generate a mesh for the entire planet in one go!
-![World Mesh](images/21_07_25/world_mesh.png)
+![Noise from trees](images/03_08_25/tree_noise.png)
 
-Going from one extreme to the next, I was inspired by Mark Elvers's week notes to try and generate some highly detailed meshes for cities. Using the Department of Environment LIDAR DSM data, I was able to automatically generate a scale model of parts of Central London just by adding the data to my code. My goal for next week is to 3D print some of these city-meshes and see just how much detail the department printers can get out of them!
-![London Mesh](images/21_07_25/london_mesh.png)
+The workaround for this was to use the [government environmental data](https://environment.data.gov.uk/survey), which provides a height map of vegetation only, and subtract that from the original terrain to get a much cleaner looking model. This allowed me to get my first highly detailed print. I've learnt that it’s better to focus on a smaller area, as I think this print was a bit too ambitious (a friend had to ask me if it was a bombed city!).
+
+![First city print](images/03_08_25/first_city.png)
+
+On Monday 3rd, I had a meeting with Andrés Camilo Zúñiga González, who gave me some great ideas of how I could potentially apply some of the visualisations I'm working on to an active piece of research which he is doing on the impacts of urban vegetation on healthy cities. He talked about how he has been using OSM (OpenStreetMaps), which inspired me to incorporate the same dataset into my city visualisation code. Trying to set this up was a challenge due to having to convert back and forth between different global projections, and like everything to do with mesh generation, it created some sureal looking errors.
+
+![Weird looking mesh error](images/03_08_25/nightmare_terrain.png)
+
+However after a while of bug fixing, I managed to get the data integrated and I'm finally able to do some detailed colour mapping. Due to the tag system OSM uses when querying their data, it is incredibly easy for me to assign colours to regions, ranging from accurately mapping river shapes to highlighting hospital buildings to make them stand out more in a print. This will allow for far more flexability for visualising cities and I'm looking to try do a multi-coloured print next week.
+
+![Coloured London](images/03_08_25/coloured_city.png)
